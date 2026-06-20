@@ -16,7 +16,6 @@ def get_contacts() -> list[dict]:
             .table("contacts")
             .select("name, phone")
             .eq("active", True)
-            .limit(3)
             .execute()
         )
         contacts = response.data
