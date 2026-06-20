@@ -1,0 +1,6 @@
+services:
+  whatsapp-notifier:
+    build: .
+    env_file:
+      - .env
+    restart: "no"
