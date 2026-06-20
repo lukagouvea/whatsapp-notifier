@@ -23,10 +23,25 @@ Script Python que lê contatos cadastrados no Supabase e envia mensagens persona
 
 ## 1. Setup do banco de dados (Supabase)
 
-### 1.1 Criar a tabela
-
+### 1.1 Estrutura da tabela
+ 
+```mermaid
+erDiagram
+    contacts {
+        uuid id PK
+        text name
+        text phone
+        bool active
+    }
+```
+ 
+> O campo `phone` deve conter apenas números no formato internacional brasileiro.
+> Exemplo: `5511999990001` (55 = Brasil, 11 = DDD, 9 dígitos do número).
+ 
+### 1.2 Criar a tabela
+ 
 No painel do Supabase, acesse **SQL Editor** e execute:
-
+ 
 ```sql
 create table contacts (
   id     uuid primary key default gen_random_uuid(),
@@ -35,11 +50,8 @@ create table contacts (
   active bool not null default true
 );
 ```
-
-> O campo `phone` deve conter apenas números no formato internacional brasileiro.
-> Exemplo: `5511999990001` (55 = Brasil, 11 = DDD, 9 dígitos do número).
-
-### 1.2 Inserir contatos de teste
+ 
+### 1.3 Inserir contatos de teste
 
 ```sql
 insert into contacts (name, phone) values
